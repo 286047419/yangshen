@@ -1,0 +1,291 @@
+
+header
+{
+    top: 0;
+    line-height: 50px;
+    background: none;
+    width: 100%;
+    right: auto;
+    bottom: auto;
+    background-color: #3C6636;
+    background-size: 100%;
+    border: 0px none rgb(0, 0, 0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-transform: translateZ(0);
+}
+
+    header .title img
+    {
+        height: 100%;
+        padding: 2px 0;
+    }
+/*首页*/
+
+/*圆角按钮*/
+.menuBox
+{
+    width: 80px;
+    height: 80px;
+    -moz-border-radius: 15px; /* Firefox */
+    -webkit-border-radius: 15px; /* Safari 和 Chrome */
+    border-radius: 15px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    border: 1px solid #3C6636;
+    line-height: 50px;
+    padding: 2px;
+    background-color: #ffffff;
+    margin: 0 auto;
+}
+
+    .menuBox img
+    {
+        height: 50%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .menuBox p
+    {
+        color: #3C6636;
+        font-size: 1.0em;
+        font-weight: 700;
+        padding: 0;
+        margin: 0;
+        height: 20px;
+        line-height: 20px;
+    }
+
+.black
+{
+    background-color: rgba(70,155,212,1);
+    color: #ffffff;
+}
+
+/*.white
+{
+    background-color: rgba(255,255,255,0.8);
+}*/
+
+
+/*圆角按钮*/
+.menuBox2
+{
+   width: 80px;
+    height: 80px;
+    -moz-border-radius: 15px; /* Firefox */
+    -webkit-border-radius: 15px; /* Safari 和 Chrome */
+    border-radius: 15px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    border: none;
+    line-height: 50px;
+    padding: 2px;
+    background-color: #3C6636;
+    margin: 0 auto;
+}
+
+    .menuBox2 img
+    {
+        height: 50%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .menuBox2 p
+    {
+        color: #000000;
+        font-size: 1.0em;
+        font-weight: 700;
+        padding: 0;
+        margin: 0;
+        height: 20px;
+        line-height: 20px;
+    }
+
+
+
+.query_txt
+{
+    padding: 0px;
+    position: relative;
+    margin: 5px auto 15px;
+    border: 1px solid #FFF;
+    background-color: #e8e2d6;
+    word-wrap: break-word;
+    word-break: normal;
+    border-radius: 15px;
+    width: 95%;
+    min-width: 304px;
+    min-height: 90px;
+    max-height: 180px;
+    text-shadow: none;
+    color: #000000;
+    font-size: 1.0em;
+    font-family: 'Microsoft YaHei',Arial, Helvetica, sans-serif;
+}
+
+
+    .query_txt span
+    {
+        padding-left: 5px;
+        margin: 0;
+    }
+
+    .query_txt ul
+    {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+        .query_txt ul li
+        {
+            width: 100%;
+            list-style: none;
+            line-height: 25px;
+            height: 30px;
+            padding-left: 10px;
+            padding-bottom: 28px;
+        }
+
+.otherlist
+{
+    color: #000000;
+    background-color: #FFF;
+}
+
+
+.img_td
+{
+    padding: 5px 0;
+    height: 95px;
+    text-align: center;
+}
+
+    .img_td a
+    {
+        text-decoration: none;
+        color: #000000;
+    }
+
+        .img_td a:link, .img_td a:hover, .img_td a:active, .img_td a:visited
+        {
+            text-decoration: none;
+            color: #000000;
+        }
+
+.music_div
+{
+    line-height: 25px;
+    position: relative;
+    margin: 2px auto 10px;
+    word-wrap: break-word;
+    word-break: normal;
+    text-align: center;
+}
+
+
+
+.fonter
+{
+    font-weight: 700;
+    position: relative;
+    margin: 10px auto;
+    font-size: 15px;
+    word-wrap: break-word;
+    word-break: normal;
+    width: 100%;
+    text-shadow: none;
+    font-family: 'Microsoft YaHei',Arial, Helvetica, sans-serif;
+}
+
+    .fonter ul li
+    {
+        width: 100%;
+        list-style: none;
+        line-height: 30px;
+        height: 30px;
+        padding: 0;
+    }
+
+    .fonter span
+    {
+        font-weight: 700;
+        padding-left: 5px;
+        margin: 0;
+        color: #006324;
+    }
+
+
+
+.slide
+{
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+    .slide:after
+    {
+        content: '';
+        display: block;
+        width: 100%;
+        padding-top: 65%;
+    }
+
+    .slide ul
+    {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .slide li
+    {
+        list-style: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+        .slide li:first-child
+        {
+            z-index: 1;
+        }
+
+        .slide li img
+        {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+    .slide .dot
+    {
+        position: absolute;
+        left: 48%;
+        right: 10px;
+        bottom: 15px;
+        font-size: 0;
+    }
+
+        .slide .dot span
+        {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            margin-left: 5px;
+            background-color: #aaa;
+            border-radius: 50%;
+        }
+
+        .slide .dot .cur
+        {
+            background-color: #000000;
+        }
+
+/*首页 end*/
