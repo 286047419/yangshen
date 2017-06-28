@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="telephone=no" name="format-detection" />
+  <title>养森系统</title>
+  <link rel="stylesheet" href="./css/Jingle.css" />
+  <link rel="stylesheet" href="./css/app.css" /> 
+  <link href="./css/alertify.core.css" rel="stylesheet" type="text/css" />
+  <link href="./css/alertify.default.css" rel="stylesheet" type="text/css" /> 
+  <link href="./css/index.css" rel="stylesheet" type="text/css" /> 
+  <link href="./css/qquery.css" rel="stylesheet" type="text/css" /> 
+  <link href="./css/fonts.css" rel="stylesheet" /> 
+ </head> 
+ <body style="background-color: #fff;"> 
+<div id="aside_container">
+</div> 
+<div id="section_container">
+<section id="index_section" class="active">
+    
+<header>
+    <nav class="left">
+        <a href="javascript:window.history.go(-1)" data-icon="previous" data-target="back"><i class="icon previous"></i>返回</a>
+    </nav>
+    <h1 class="title">
+        <img src="./images/logo.png">
+    </h1>
+    <nav class="right">
+        <a data-target="section" data-icon="info" href="http://yangsen.hyxmt.cn/a/query.aspx?FWCode=999060367003#"></a>
+    </nav>
+
+</header>
+
+
+    <style type="text/css">
+        .result_content
+        {
+            width: 80%;
+            margin: 0 auto;
+            color: #000;
+        }
+    </style>
+
+
+    <div class="sec" id="Tip"></div>
+    <div class="QueryPanl">
+        <input type="hidden" id="FWCode" name="FWCode" value="">
+        <table style="width: 100%;">
+            <tbody><tr>
+                <td style="width: 100%" colspan="3">
+                    <img src="./images/qrcode.png" style="width: 100%">
+                </td>
+            </tr>
+
+            
+            <tr>
+                <td style="width: 50%" colspan="2">
+                    <input type="text" disabled="disabled" class="J_key" value="">
+                </td>
+                <td style="width: 40%">
+                    <input name="ff" type="text" id="ff" value="" maxlength="4" placeholder="防伪码后四位">
+                </td>
+
+            </tr>
+            
+
+            <tr>
+                <td style="width: 100%" colspan="3">
+                    <input type="button" value="查询" onclick="QueryCode()" class="button block">
+                </td>
+            </tr>
+
+        </tbody></table>
+
+    </div>
+
+    <div class="QueryPanl">
+        <div id="QueryResult" class="result_content" style="width: 80%;">
+        </div>
+
+        <div id="cc" class="result_content" style="display: none;">
+            <p>彩色防伪码</p>
+              <div id="ccfile"></div>
+        </div>
+        <div id="dd" class="result_content" style="display: none;">
+            <p>彩色二维码</p>
+            <img id="ddfile">
+        </div>
+       
+    </div>
+    </section> 
+  <input type="hidden" id="num" name="num" value="1">        
+  <input type="hidden" id="id" name="id" value="">     
+ 
+ 
+</div>
+    
+<div id="jingle_toast" class="success" style="display: none;"></div>
+<div id="jingle_popup" style="display: none;" class="loading">
+   
+        <div class="circle-loader">
+        <div class="circle-line">
+            <div class="circle circle-blue"></div>
+            <div class="circle circle-blue"></div>
+            <div class="circle circle-blue"></div>
+        </div>
+        <div class="circle-line">
+            <div class="circle circle-yellow"></div>
+            <div class="circle circle-yellow"></div>
+            <div class="circle circle-yellow"></div>
+        </div>
+        <div class="circle-line">
+            <div class="circle circle-red"></div>
+            <div class="circle circle-red"></div>
+            <div class="circle circle-red"></div>
+        </div>
+        <div class="circle-line">
+            <div class="circle circle-green"></div>
+            <div class="circle circle-green"></div>
+            <div class="circle circle-green"></div>
+        </div>
+    </div>
+
+    <p>加载中...</p>
+</div>
+<div id="jingle_popup_mask" style="opacity: 0.1; display: none;"></div>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript">
+    var IsBlackCode = false;
+    var IsCcfile = true;
+    var IsDdfile = true;
+    var IsVvfile = true;
+    $(".J_key, #FWCode").val(getUrlParam("FWCode"));
+    
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    
+    //防伪查询
+    function QueryCode() {
+        var FWCode = $("#FWCode").val();
+        var ff = "";
+        var code = "";
+        
+
+        if (FWCode=="") {
+
+            ff = $("#f").val().trim();
+
+            if (ff == "") {
+                alert("请输入防伪码!");
+                return;
+            }
+
+            code = ff;
+
+        } else {
+
+            ff = $("#ff").val();
+
+            if (ff == "") {
+                alert("防伪码后四位!");
+                return;
+            }  
+
+            code = FWCode + ff;
+        } 
+
+        if (IsBlackCode) {
+            //黑白码
+            try {
+                $("#QueryResult").text("正在查询...");
+                $.ajax({
+                    type: "POST",
+                    data: { action: "queryfw", FWcode: code },
+                    url: "/ServiceAPI/usercenter/Manager.aspx",
+                    success: function (item) {
+                        $("#QueryResult").text("");
+                        if (item.id == 1) {
+                            $("#QueryResult").html(item.messages);
+                            
+
+                        } else {
+                            alert(item.messages);
+                        }
+
+                    },
+                    error: function (xhr, type) {
+                        $("#QueryResult").text("");
+                        alert('超时,或服务错误');
+                    }
+                });
+
+            } catch (e) {
+                $("#QueryResult").text("");
+                alert(e);
+            }  
+
+
+        } else {
+            //彩码
+
+            try {
+                $("#QueryResult").text("正在查询...");
+                
+                $.ajax({
+                    type: "GET",
+                    url: "http://qr.hyxmt.cn/ShowInfo.ashx?c=http://yangsen.hyxmt.cn/&f=" + code,
+                    dataType: "jsonp",
+                    success: function (msg) {
+                        $("#QueryResult").text("");
+                        $("#ccfile").html("");
+                        if (msg.QcodePicUrl ==null) {
+                            //document.getElementById("ccfile").innerHTML="";
+                            $("#dd").hide();
+                            $("#cc").hide();
+                            var errmes="您好!您查询的防伪码是假冒";
+                            alert(errmes);
+                            return;
+                        } else {
+                            
+                            var mes="尊敬的顾客您好！您购买的是养森的产品，属于正品，请放心使用！" + "查询了"+msg.CheckTime+"次,第一次查询时间："+msg.firTime;
+                            if (mes) {
+                                $("#QueryResult").text(mes);
+                            }
+                            if (msg.QcodePicUrl &&IsCcfile) {
+                                $("#ccfile").append(msg.FwColorCode);
+                                $("#cc").show();
+                            } else {
+                                $("#cc").hide();
+                            }
+
+                            if (msg.FwColorCode&&IsDdfile) {
+                                $("#ddfile").attr("src", msg.QcodePicUrl);
+                                $("#dd").show();
+                            } else {
+                                $("#dd").hide();
+                            }
+
+                        }
+                        
+                    },
+                    error: function (xhr, type) {
+                        $("#QueryResult").text("");
+                        alert('超时,或服务错误');
+                    }
+                });
+            } catch (e) {
+                $("#QueryResult").text("");
+                alert(e.message);
+            }
+        }
+
+    }
+
+    
+</script> 
+
+</body></html>
